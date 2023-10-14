@@ -1,7 +1,8 @@
-# Import necessary libraries
 import os
 import streamlit as st
 import time
+from langchain.globals import set_llm_cache
+from langchain.cache import InMemoryCache
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import DirectoryLoader
@@ -9,8 +10,12 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.vectorstores import Chroma
-from langchain.cache import InMemoryCache
-langchain.llm_cache = InMemoryCache()
+
+# Create an instance of InMemoryCache
+llm_cache = InMemoryCache()
+
+# Set the llm_cache using set_llm_cache function
+set_llm_cache(llm_cache)
 
 from PIL import Image
 __import__('pysqlite3')
