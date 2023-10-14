@@ -5,4 +5,4 @@ chromadb
 tiktoken
 unstructured
 unstructured[all-docs]
-sqlite
+pysqlite
