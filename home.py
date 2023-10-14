@@ -1,7 +1,15 @@
 import streamlit as st
 #from components.logo import logo_component
 from components.sidebar import sidebar_component
-st.set_page_config(page_title="💬 DocBot Fusion")
+st.set_page_config(
+    page_title=" DocBot Fusion", 
+    layout="wide",
+    page_icon='💬',
+    initial_sidebar_state='expanded',
+    menu_items={
+        'Report a bug': "https://github.com/two-trick-pony-NL/DocBot-Fusion/issues",
+        'Author': "https://petervandoorn.com"
+    })
 
 
 sidebar_component()
