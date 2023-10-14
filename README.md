@@ -21,6 +21,10 @@ Take a testdrive on [the Demo website](https://docbot-fusion.streamlit.app/)
 <img width="1061" alt="example2" src="https://github.com/two-trick-pony-NL/DocBot-Fusion/assets/71013416/0c3d6525-b34a-4ea1-8c80-1e289c9bf4ec">
 
 
+#### Finding a payment🔎
+<img width="1676" alt="Screenshot 2023-10-15 at 01 23 59" src="https://github.com/two-trick-pony-NL/DocBot-Fusion/assets/71013416/af1b140d-6769-434f-818b-27a8eb61ccd0">
+
+
 
 ## Installation
 
