@@ -31,7 +31,7 @@ previous_data_files = data_files.copy()
 # Title
 st.sidebar.title('🔥Docusearch GPT App')
 st.sidebar.write("This app combines ChatGPT's conversational abilities with document analysis. It processes uploaded documents, extracting insights and generating contextually relevant responses. The result is a powerful tool for both casual conversations and professional tasks.")
-      
+
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -40,18 +40,30 @@ if "messages" not in st.session_state:
 st.sidebar.header("File List and Upload")
 uploaded_files = st.sidebar.file_uploader("Upload documents", accept_multiple_files=True)
 
+# Display uploaded files and preview their content
+st.sidebar.write("Available files:")
+st.sidebar.write(data_files)
 
-    
 for uploaded_file in uploaded_files or []:
     with open(os.path.join(data_folder, uploaded_file.name), "wb") as f:
         f.write(uploaded_file.getvalue())
     data_files.append(uploaded_file.name)
 
-st.sidebar.write("Available files:")
-st.sidebar.write(data_files)
-with st.sidebar.expander("⚠️ Disclaimer"):
-    st.write("This is a AI model, it creates answers on a best effort basis using Statistics. This does not ensure all information is alway 100 percent factual. As a result it's advices to always think and verify before assumgin any information given by the AI is true. ")
+# Display file contents
+st.header("Preview of Uploaded Files")
 
+# Modal window to display file content
+selected_file = st.sidebar.selectbox("Select a file to preview:", data_files)
+if selected_file:
+    file_path = os.path.join(data_folder, selected_file)
+    file_contents = ""
+    with open(file_path, "r") as file:
+        file_contents = file.read()
+
+    # Button to open modal
+    if st.sidebar.button(f"Preview {selected_file}"):
+        st.markdown(f"### Previewing {selected_file}")
+        st.text(file_contents)
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
