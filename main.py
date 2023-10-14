@@ -2,9 +2,9 @@
 import streamlit as st
 import os
 import time
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+#__import__('pysqlite3')
+#import sys
+#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
@@ -17,7 +17,7 @@ from langchain.vectorstores import Chroma
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
-PERSIST = False
+PERSIST = True
 
 # List files in the "data" folder
 data_folder = "data"
@@ -28,14 +28,15 @@ previous_data_files = data_files.copy()
 
 
 # Title
-st.title('🔥Docusearch GPT App')
-
+st.sidebar.title('🔥Docusearch GPT App')
+st.sidebar.text("This app combines ChatGPT's conversational abilities with document analysis. It processes uploaded documents, extracting insights and generating contextually relevant responses. The result is a powerful tool for both casual conversations and professional tasks.")
+      
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Sidebar to display files and allow document upload
-st.sidebar.title("File List and Upload")
+st.sidebar.header("File List and Upload")
 uploaded_files = st.sidebar.file_uploader("Upload documents", accept_multiple_files=True)
 
 
