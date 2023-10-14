@@ -16,3 +16,6 @@ def sidebar_component():
 
     with st.sidebar.expander("⚠️ Disclaimer"):
         st.write("This app may produce inaccurate information - it derives it's answers from Statistics and thus will give the most probable answer, not necessary a factual one. ")
+
+
+
