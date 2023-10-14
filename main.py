@@ -24,8 +24,6 @@ previous_data_files = data_files.copy()
 
 
 # Title
-with st.expander("⚠️ Disclaimer"):
-    st.write("This is a AI model, it creates answers on a best effort basis using Statistics. This does not ensure all information is alway 100 percent factual. As a result it's advices to always think and verify before assumgin any information given by the AI is true. ")
 st.title('🔥Docusearch GPT App')
 
 # Initialize chat history
@@ -35,6 +33,8 @@ if "messages" not in st.session_state:
 # Sidebar to display files and allow document upload
 st.sidebar.title("File List and Upload")
 uploaded_files = st.sidebar.file_uploader("Upload documents", accept_multiple_files=True)
+
+
     
 for uploaded_file in uploaded_files or []:
     with open(os.path.join(data_folder, uploaded_file.name), "wb") as f:
@@ -43,6 +43,9 @@ for uploaded_file in uploaded_files or []:
 
 st.sidebar.write("Available files:")
 st.sidebar.write(data_files)
+with st.sidebar.expander("⚠️ Disclaimer"):
+    st.write("This is a AI model, it creates answers on a best effort basis using Statistics. This does not ensure all information is alway 100 percent factual. As a result it's advices to always think and verify before assumgin any information given by the AI is true. ")
+
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
