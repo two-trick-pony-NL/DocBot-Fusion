@@ -27,6 +27,20 @@ import sqlite3
 image = Image.open('images/logo.png')
 st.sidebar.image(image)
 
+#Adding file upload
+uploaded_file = st.sidebar.file_uploader("", type=['pdf', 'txt'])
+# Save uploaded files to disk
+if uploaded_file is not None:
+    # Use the original filename
+    file_name = str(uploaded_file.name)
+    file_path = os.path.join(data_folder, file_name)
+
+    # Save the file to disk
+    with open(file_path, 'wb') as f:
+        f.write(uploaded_file.getvalue())
+
+    st.success(f"File '{file_name}' uploaded successfully!")
+
 # Set OpenAI API key from Streamlit secrets
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 

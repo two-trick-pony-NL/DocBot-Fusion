@@ -12,7 +12,9 @@ st.set_page_config(
     })
 
 
+
 sidebar_component()
+
 
 from PIL import Image
 
@@ -34,20 +36,42 @@ st.markdown('<a href="/files" target="_self">Upload files 🗂️ </a>', unsafe_
 st.markdown("""
     ## How does that work? Simple:
     - 📤 just upload some files like your calendar 📆 and preferences of your family 👨‍👩‍👧
+    
     - 💬 Start chatting
     - 🤓 Get personalsid responses
     
-    
-   
 """
 )
-st.image(example)
+
 st.markdown(
     """
-     ## Get started 
+     ## Upload your first file
 
     """
 )
+#Adding file upload
+uploaded_file = st.file_uploader("", type=['pdf', 'txt'])
+# Save uploaded files to disk
+if uploaded_file is not None:
+    # Use the original filename
+    file_name = str(uploaded_file.name)
+    file_path = os.path.join(data_folder, file_name)
+
+    # Save the file to disk
+    with open(file_path, 'wb') as f:
+        f.write(uploaded_file.getvalue())
+
+    st.success(f"File '{file_name}' uploaded successfully!")
+
+st.markdown(
+    """
+     ## Example chat
+
+    """
+)
+
+st.image(example)
+
 
 
 
