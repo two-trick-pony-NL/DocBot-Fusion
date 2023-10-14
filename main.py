@@ -48,7 +48,7 @@ for uploaded_file in uploaded_files or []:
 st.header("Preview of Uploaded Files")
 
 # Modal window to display file content
-selected_file = st.sidebar.selectbox("Select a file to preview:", data_files)
+selected_file = st.sidebar.selectbox("Select a file to preview:", data_files, index=1)
 if selected_file:
     file_path = os.path.join(data_folder, selected_file)
     file_contents = ""
