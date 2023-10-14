@@ -100,7 +100,7 @@ if query:
                 index = VectorstoreIndexCreator().from_loaders([loader])
 
         chain = ConversationalRetrievalChain.from_llm(
-            llm=ChatOpenAI(model="gpt-3.5-turbo", cache=False),
+            llm=ChatOpenAI(model="gpt-3.5-turbo", cache=True, temperature=1.2),
             retriever=index.vectorstore.as_retriever(search_kwargs={"k": 1}),
         )
 
