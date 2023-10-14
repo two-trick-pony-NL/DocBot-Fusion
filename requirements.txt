@@ -7,5 +7,5 @@ unstructured
 unstructured[all-docs]
 unstructured[rtf]
 pysqlite3-binary
-streamlit-extras
 streamlit-card
+streamlit-extras
