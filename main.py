@@ -1,11 +1,6 @@
-
-import streamlit as st
 import os
+import streamlit as st
 import time
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import DirectoryLoader
@@ -17,7 +12,7 @@ from langchain.vectorstores import Chroma
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
-#Can't persist for now as Streamlit does not support the sqlite database
+# Can't persist for now as Streamlit does not support the sqlite database
 PERSIST = False
 
 # List files in the "data" folder
@@ -26,11 +21,13 @@ data_files = [file for file in os.listdir(data_folder) if os.path.isfile(os.path
 previous_data_files = data_files.copy()
 # Check if new files were uploaded
 
-
-
 # Title
 st.sidebar.title('🔥Docusearch GPT App')
-st.sidebar.write("This app combines ChatGPT's conversational abilities with document analysis. It processes uploaded documents, extracting insights and generating contextually relevant responses. The result is a powerful tool for both casual conversations and professional tasks.")
+st.sidebar.write(
+    "This app combines ChatGPT's conversational abilities with document analysis. "
+    "It processes uploaded documents, extracting insights and generating contextually relevant responses. "
+    "The result is a powerful tool for both casual conversations and professional tasks."
+)
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -40,9 +37,7 @@ if "messages" not in st.session_state:
 st.sidebar.header("File List and Upload")
 uploaded_files = st.sidebar.file_uploader("Upload documents", accept_multiple_files=True)
 
-# Display uploaded files and preview their content
-st.sidebar.write("Available files:")
-st.sidebar.write(data_files)
+
 
 for uploaded_file in uploaded_files or []:
     with open(os.path.join(data_folder, uploaded_file.name), "wb") as f:
@@ -64,6 +59,12 @@ if selected_file:
     if st.sidebar.button(f"Preview {selected_file}"):
         st.markdown(f"### Previewing {selected_file}")
         st.text(file_contents)
+
+# Button to go back to chat view
+if st.sidebar.button("Back to Chat"):
+    st.header("Chat View")
+    # Display chat-related content here
+    # ...
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
@@ -88,7 +89,9 @@ if query:
         else:
             loader = DirectoryLoader(data_folder)
             if PERSIST:
-                index = VectorstoreIndexCreator(vectorstore_kwargs={"persist_directory": "persist"}).from_loaders([loader])
+                index = VectorstoreIndexCreator(vectorstore_kwargs={"persist_directory": "persist"}).from_loaders(
+                    [loader]
+                )
             else:
                 index = VectorstoreIndexCreator().from_loaders([loader])
 
