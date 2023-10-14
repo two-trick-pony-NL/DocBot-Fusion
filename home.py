@@ -1,7 +1,7 @@
 import streamlit as st
-from components.logo import logo_component
+#from components.logo import logo_component
 from components.sidebar import sidebar_component
-logo_component()
+#logo_component()
 sidebar_component()
 
 st.markdown(
