@@ -1,8 +1,20 @@
-# DocBot Fusion (proof of concept)
 
-Simple Streamlit Implementation that combines ChatGPT with your own files. Inspired by this [Video](https://youtu.be/9AXP7tCI9PI).
+![logo](https://github.com/two-trick-pony-NL/DocBot-Fusion/assets/71013416/828f1d57-79f5-4efd-ba59-bb76fbc74d00)
 
-Take a testdrive on https://petervandoorn.streamlit.app
+# If ChatGPT would really know you, what would it say? 😏
+Well you're about to find out. With Docbot Fusion you fuse ChatGPT with **your** files so that it knows what's going on in your life. 
+
+## How does that work? Simple:
+- 📤 just upload some files like your calendar 📆 and preferences of your family 👨‍👩‍👧
+- 💬 Start chatting
+- 🤓 Get personalised responses
+
+## Example
+<img width="1117" alt="example" src="https://github.com/two-trick-pony-NL/DocBot-Fusion/assets/71013416/ab5d028d-b085-4132-ae0c-77fa37b51f1e">
+
+
+
+Take a testdrive on [the Demo website](https://docbot-fusion.streamlit.app/)
 
 ## Installation
 
@@ -16,3 +28,6 @@ Take a testdrive on https://petervandoorn.streamlit.app
 Add data to the `data` folder. Currently we only support .txt and .pdf files. 
 Restarting the server will add the new files into the model. 
 
+
+## Acknowledgement
+I was inspired by: [Video](https://youtu.be/9AXP7tCI9PI).
