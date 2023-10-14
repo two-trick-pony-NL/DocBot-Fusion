@@ -4,20 +4,34 @@ from components.sidebar import sidebar_component
 #logo_component()
 sidebar_component()
 
+from PIL import Image
+
+image = Image.open('images/logo.png')
+example = Image.open('images/example.png')
+
+
+#st.image(image)
+
 st.markdown(
     """
-    # Welcome to Docbot Fusion 👋🏻
-    If ChatGPT would really know **you**, what would it say? Well you're about to find out. With Docbot Fusion you fuse ChatGPT with **your** files so that it knows what's going on in your life. 
+    # If ChatGPT would really know you, what would it say? 😏
+    Well you're about to find out. With Docbot Fusion you fuse ChatGPT with **your** files so that it knows what's going on in your life. 
     
-    ## How does that work? 
-    Simple: just upload some files, your calendar your favourite recipes and start asking questions: 
-    - What should I eat today
-    - 
+    ## How does that work? Simple:
+    - 📤 just upload some files like your calendar 📆 and preferences of your family 👨‍👩‍👧
+    - 💬 Start chatting
+    - 🤓 Get personalsid responses
     
     
-    ## Get started 
    
 """
+)
+st.image(example)
+st.markdown(
+    """
+     ## Get started 
+
+    """
 )
 
 # Place buttons in the columns
@@ -31,6 +45,3 @@ st.markdown(
     If you're curious how this tool works, then you can. The code is [here](https://github.com/two-trick-pony-NL/DocBot-Fusion)
 """
 )
-
-with st.expander("⚠️ Disclaimer and Privacy"):
-    st.write("This app may produce inaccurate information - it derives it's answers from Statistics and thus will give the most probable answer, not necessary a factual one. ")

@@ -1,10 +1,13 @@
 
 
 import streamlit as st
-
+from PIL import Image
 
 def sidebar_component():
-    st.sidebar.title('🔥🔥🔥🔥DocBot Fusion GPT App')
+
+    image = Image.open('images/logo.png')
+    st.sidebar.image(image)
+    st.sidebar.title('DocBot Fusion')
     st.sidebar.write(
         "This app combines ChatGPT's conversational abilities with document analysis. "
         "It processes uploaded documents, extracting insights and generating contextually relevant responses. "

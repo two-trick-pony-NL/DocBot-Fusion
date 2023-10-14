@@ -8,8 +8,9 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.vectorstores import Chroma
-from components.logo import logo_component
-logo_component()
+from PIL import Image
+image = Image.open('images/logo.png')
+st.sidebar.image(image)
 
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 
