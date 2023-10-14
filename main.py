@@ -13,7 +13,7 @@ from langchain.vectorstores import Chroma
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
-PERSIST = True
+PERSIST = False
 
 # List files in the "data" folder
 data_folder = "data"
