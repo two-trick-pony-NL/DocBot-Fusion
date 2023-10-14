@@ -1,9 +1,8 @@
 import streamlit as st
 from PIL import Image
-
-image = Image.open('images/logo.png')
-st.sidebar.image(image)
-st.sidebar.title('If chatGPT really knew you, what would it say?')
+from components.sidebar import sidebar_component
+#logo_component()
+sidebar_component()
 
 
 st.write("# About DocBot Fusion 👋")
