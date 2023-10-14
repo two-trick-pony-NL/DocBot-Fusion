@@ -10,8 +10,7 @@ from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.vectorstores import Chroma
 from langchain.cache import InMemoryCache
-
-set_llm_cache(InMemoryCache())
+langchain.llm_cache = InMemoryCache()
 
 from PIL import Image
 __import__('pysqlite3')
