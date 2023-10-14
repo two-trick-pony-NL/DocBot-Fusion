@@ -30,7 +30,7 @@ previous_data_files = data_files.copy()
 
 # Title
 st.sidebar.title('🔥Docusearch GPT App')
-st.sidebar.text("This app combines ChatGPT's conversational abilities with document analysis. It processes uploaded documents, extracting insights and generating contextually relevant responses. The result is a powerful tool for both casual conversations and professional tasks.")
+st.sidebar.write("This app combines ChatGPT's conversational abilities with document analysis. It processes uploaded documents, extracting insights and generating contextually relevant responses. The result is a powerful tool for both casual conversations and professional tasks.")
       
 # Initialize chat history
 if "messages" not in st.session_state:

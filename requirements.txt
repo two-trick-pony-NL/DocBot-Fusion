@@ -5,4 +5,5 @@ chromadb
 tiktoken
 unstructured
 unstructured[all-docs]
+unstructured[rtf]
 pysqlite3-binary
