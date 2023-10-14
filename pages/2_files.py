@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import pandas as pd
 from PIL import Image
+import time
 
 image = Image.open('images/logo.png')
 st.sidebar.image(image)
@@ -94,7 +95,21 @@ else:
 # Upload files
 st.write("### 📤 Upload Files")
 st.write("Simply add more documents to DocBot and it will better learn about your life")
-uploaded_files = st.file_uploader("", type=['pdf', 'txt'])
+uploaded_file = st.file_uploader("", type=['pdf', 'txt'])
+
+# Save uploaded files to disk
+if uploaded_file is not None:
+    # Use the original filename
+    file_name = str(uploaded_file.name)
+    file_path = os.path.join(data_folder, file_name)
+
+    # Save the file to disk
+    with open(file_path, 'wb') as f:
+        f.write(uploaded_file.getvalue())
+
+    st.success(f"File '{file_name}' uploaded successfully!")
+
+
 
 st.write("### 📄 Document inspector")
 st.write("Here you can see the contents of the documents you have already uploaded")
