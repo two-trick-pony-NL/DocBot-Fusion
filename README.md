@@ -1,6 +1,6 @@
-# Document Search Proof of Concept
+# DocBot Fusion (proof of concept)
 
-Simple script to use ChatGPT with the knowledge of your own files your own files. Inspired by this [Video](https://youtu.be/9AXP7tCI9PI).
+Simple Streamlit Implementation that combines ChatGPT with your own files. Inspired by this [Video](https://youtu.be/9AXP7tCI9PI).
 
 Take a testdrive on https://petervandoorn.streamlit.app
 

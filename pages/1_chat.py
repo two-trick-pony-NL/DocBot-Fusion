@@ -17,7 +17,7 @@ PERSIST = False
 
 #Page config
 st.set_page_config(
-    page_title="Chat",
+    page_title="🎙️ Chat",
     page_icon="🎙️",
 )
 
@@ -39,39 +39,10 @@ st.sidebar.write(
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Sidebar to display files and allow document upload
-st.sidebar.header("Upload new files")
-uploaded_files = st.sidebar.file_uploader("Upload documents", accept_multiple_files=True)
 
-
-
-for uploaded_file in uploaded_files or []:
-    with open(os.path.join(data_folder, uploaded_file.name), "wb") as f:
-        f.write(uploaded_file.getvalue())
-    data_files.append(uploaded_file.name)
 
 # Display file contents
-st.header("Chat")
-
-# Modal window to display file content
-st.sidebar.header("Explore files")
-selected_file = st.sidebar.selectbox("Select a file to preview:", data_files, index=1)
-if selected_file:
-    file_path = os.path.join(data_folder, selected_file)
-    file_contents = ""
-    with open(file_path, "r") as file:
-        file_contents = file.read()
-
-    # Button to open modal
-    if st.sidebar.button(f"Preview {selected_file}"):
-        st.markdown(f"### Previewing {selected_file}")
-        st.text(file_contents)
-
-# Button to go back to chat view
-if st.sidebar.button("Back to Chat"):
-    st.header("Chat View")
-    # Display chat-related content here
-    # ...
+st.header("🎙️ Chat")
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
@@ -87,9 +58,17 @@ if not query:
     col1, col2, col3 = st.columns(3)
 
     # Place buttons in the columns
-    button1 = col1.button('Button 1')
-    button2 = col2.button('Button 2')
-    button3 = col3.button('Button 3')
+    button1 = col1.button('What is my schedule tomorrow?')
+    button2 = col2.button('What companies did I work for?')
+    button3 = col3.button('what was a expensive recent purchase?')
+    if button1:
+        query = "What is my schedule tomorrow?"
+    if button2:
+        query = "What companies did I work for?"
+    if button3:
+        query = "what was the most expensive thing I bought recently?"
+
+    
 if query:
     with st.spinner("Hang on..."):
         with st.chat_message("user"):
