@@ -1,0 +1,8 @@
+langchain
+streamlit
+time
+openai
+chromadb
+tiktoken
+unstructured
+unstructured[all-docs]
