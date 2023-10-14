@@ -26,7 +26,7 @@ previous_data_files = data_files.copy()
 # Check if new files were uploaded
 
 # Title
-st.sidebar.title('If chatGPT would know you, what would it say?')
+st.sidebar.title('If chatGPT really knew you, what would it say?')
 st.sidebar.write(
     "Start chatting with your personal assistant, if you don't know what to talk about then here are some ideas: "
 )

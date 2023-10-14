@@ -14,7 +14,7 @@ example = Image.open('images/example.png')
 
 st.markdown(
     """
-    # If ChatGPT would really know you, what would it say? 😏
+    # If ChatGPT really knew you, what would it say? 😏
     Well you're about to find out. With Docbot Fusion you fuse ChatGPT with **your** files so that it knows what's going on in your life. 
     
     ## How does that work? Simple:

@@ -1,7 +1,7 @@
 
 ![logo](https://github.com/two-trick-pony-NL/DocBot-Fusion/assets/71013416/828f1d57-79f5-4efd-ba59-bb76fbc74d00)
 
-# If ChatGPT would really know you, what would it say? 😏
+# If ChatGPT really knew you, what would it say? 😏
 Well you're about to find out. With Docbot Fusion you fuse ChatGPT with **your** files so that it knows what's going on in your life. 
 
 ## How does that work? Simple:
