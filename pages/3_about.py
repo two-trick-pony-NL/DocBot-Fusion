@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.write("# About DocBot Fusion 👋")
-st.write("**Docusearch** is an innovative web application that combines the conversational prowess of ChatGPT with advanced document analysis. Created by Peter van Doorn, this app processes uploaded documents, extracting insights and generating contextually relevant responses.")
+st.write("**DocBot Fusion** is an innovative web application that combines the conversational prowess of ChatGPT with advanced document analysis. Created by Peter van Doorn, this app processes uploaded documents, extracting insights and generating contextually relevant responses.")
 st.write("## Key Features:")
 st.write("- Seamless Integration: The app seamlessly integrates ChatGPT's conversational abilities with document analysis.")
 st.write("- Document Processing: Upload documents for extraction of valuable insights and contextually relevant responses.")
@@ -13,7 +13,7 @@ st.write("2. **Document Analysis:** Leverage the app to process uploaded documen
 st.write("## Disclaimer:")
 st.write("**Accuracy Warning:** The app's answers are probabilistic and based on statistical patterns. Users are advised to critically evaluate results.")
 st.write("## About the Creator:")
-st.write("**Peter van Doorn** developed and maintains Docusearch.")
+st.write("**Peter van Doorn** developed and maintains DocBot Fusion.")
 st.write("## Code on GitHub:")
 st.write("Explore and utilize the app's code on [GitHub](https://github.com/two-trick-pony-NL/gpt-document-search).")
 st.write("---")

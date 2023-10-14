@@ -8,6 +8,8 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.vectorstores import Chroma
+from components.logo import logo_component
+logo_component()
 
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 
@@ -15,11 +17,6 @@ os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 # Can't persist for now as Streamlit does not support the sqlite database
 PERSIST = False
 
-#Page config
-st.set_page_config(
-    page_title="🎙️ Chat",
-    page_icon="🎙️",
-)
 
 # List files in the "data" folder
 data_folder = "data"
@@ -28,12 +25,12 @@ previous_data_files = data_files.copy()
 # Check if new files were uploaded
 
 # Title
-st.sidebar.title('🔥Docusearch GPT App')
+st.sidebar.title('If chatGPT would know you, what would it say?')
 st.sidebar.write(
-    "This app combines ChatGPT's conversational abilities with document analysis. "
-    "It processes uploaded documents, extracting insights and generating contextually relevant responses. "
-    "The result is a powerful tool for both casual conversations and professional tasks."
+    "Start chatting with your personal assistant, if you don't know what to talk about then here are some ideas: "
 )
+
+  
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -67,7 +64,14 @@ if not query:
         query = "What companies did I work for?"
     if button3:
         query = "what was the most expensive thing I bought recently?"
-
+    if st.sidebar.button('👨🏻‍🍳 Do I have time to cook a big meal tomorrow? ', key='suggestion1'):
+        query = "Do I have time to cook a big meal tomorrow?"
+    if st.sidebar.button('🏆 Tell me 3 of my strenghts 🏆', key='suggestion2'):
+        query = "Given my work experience on LinkedIn, samenvatting, Publications, ervaring, Belangrijkste vaardigheden,  education, opleiding could you tell me 3 of my strenghts??"
+    if st.sidebar.button('💸 What should I cut back on with Spending? ', key='suggestion3'):
+        query = "Do I have time to cook a big meal tomorrow?"
+    if st.sidebar.button('🍿 What movie should I watch with my family tonight? ', key='suggestion4'):
+        query = "Based on my family composition of wife and young daughter, suggest 3 movie ideas for tonight?"
     
 if query:
     with st.spinner("Hang on..."):

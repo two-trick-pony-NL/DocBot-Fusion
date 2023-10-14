@@ -1,39 +1,36 @@
 import streamlit as st
+from components.logo import logo_component
+from components.sidebar import sidebar_component
+logo_component()
+sidebar_component()
 
-
-st.set_page_config(
-    page_title="Hello",
-    page_icon="👋",
+st.markdown(
+    """
+    # Welcome to Docbot Fusion 👋🏻
+    If ChatGPT would really know **you**, what would it say? Well you're about to find out. With Docbot Fusion you fuse ChatGPT with **your** files so that it knows what's going on in your life. 
+    
+    ## How does that work? 
+    Simple: just upload some files, your calendar your favourite recipes and start asking questions: 
+    - What should I eat today
+    - 
+    
+    
+    ## Get started 
+   
+"""
 )
 
-st.write("# Welcome to Streamlit! 👋")
-
-st.sidebar.title('🔥Docusearch GPT App')
-st.sidebar.write(
-    "This app combines ChatGPT's conversational abilities with document analysis. "
-    "It processes uploaded documents, extracting insights and generating contextually relevant responses. "
-    "The result is a powerful tool for both casual conversations and professional tasks."
-)
-
+# Place buttons in the columns
+st.markdown('<a href="/chat" target="_self">Start Chat 💬 </a>', unsafe_allow_html=True)
+st.markdown('<a href="/files" target="_self">Upload files 🗂️ </a>', unsafe_allow_html=True)
 
 
 st.markdown(
     """
-    Streamlit is an open-source app framework built specifically for
-    Machine Learning and Data Science projects.
-    **👈 Select a demo from the sidebar** to see some examples
-    of what Streamlit can do!
-    ### Want to learn more?
-    - Check out [streamlit.io](https://streamlit.io)
-    - Jump into our [documentation](https://docs.streamlit.io)
-    - Ask a question in our [community
-        forums](https://discuss.streamlit.io)
-    ### See more complex demos
-    - Use a neural net to [analyze the Udacity Self-driving Car Image
-        Dataset](https://github.com/streamlit/demo-self-driving)
-    - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
+    ### Open source
+    If you're curious how this tool works, then you can. The code is [here](https://github.com/two-trick-pony-NL/DocBot-Fusion)
 """
 )
 
-with st.expander("⚠️ Disclaimer"):
+with st.expander("⚠️ Disclaimer and Privacy"):
     st.write("This app may produce inaccurate information - it derives it's answers from Statistics and thus will give the most probable answer, not necessary a factual one. ")
