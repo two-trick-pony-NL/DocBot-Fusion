@@ -72,15 +72,15 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # Set a larger text input box
-query = st.chat_input("What do you want to know?")
+query = st.chat_input("What do you want to know?", max_chars=500)
 if not query:
     st.success("Ask a question in the chatbox to get started!")
     # Create three buttons in a row
     col1, col2, col3 = st.columns(3)
     # Place buttons in the columns
-    button1 = col1.button('What is my schedule tomorrow?')
-    button2 = col2.button('What companies did I work for?')
-    button3 = col3.button('what was a expensive recent purchase?')
+    button1 = col1.button('📆 What is my schedule tomorrow?')
+    button2 = col2.button('🏢 What companies did I work for?')
+    button3 = col3.button('💳 what was a expensive recent purchase?')
     # Define behavior when buttons are clicked
     if button1:
         query = "What is my schedule tomorrow?"

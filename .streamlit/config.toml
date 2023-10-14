@@ -1,3 +1,4 @@
 [theme]
-primaryColor="#F096A6"
+base="light"
+primaryColor="#f096a6"
 font="monospace"
