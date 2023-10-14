@@ -1,6 +1,5 @@
 langchain
 streamlit
-time
 openai
 chromadb
 tiktoken
