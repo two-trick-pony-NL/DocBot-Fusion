@@ -3,6 +3,7 @@ import streamlit as st
 import os
 import time
 
+
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import DirectoryLoader
@@ -58,7 +59,7 @@ query = st.chat_input("What do you want to know?")
 if not query:
     st.success("Ask a question in the chatbox to get started!")
 if query:
-    with st.spinner("Thinking..."):
+    with st.spinner("Hang on..."):
         with st.chat_message("user"):
             st.markdown(query)
             # Add user message to chat history
