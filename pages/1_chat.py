@@ -11,6 +11,10 @@ from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.vectorstores import Chroma
 from PIL import Image
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 # Load the app logo
 image = Image.open('images/logo.png')
 st.sidebar.image(image)
