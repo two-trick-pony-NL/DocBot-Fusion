@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 
 def sidebar_component():
-
+    from PIL import Image
     image = Image.open('images/logo.png')
     st.sidebar.image(image)
     st.sidebar.title('DocBot Fusion')

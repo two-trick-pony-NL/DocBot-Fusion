@@ -1,7 +1,5 @@
 import streamlit as st
-from PIL import Image
 from components.sidebar import sidebar_component
-#logo_component()
 sidebar_component()
 
 

@@ -1,7 +1,9 @@
 import streamlit as st
 #from components.logo import logo_component
 from components.sidebar import sidebar_component
-#logo_component()
+st.set_page_config(page_title="💬 DocBot Fusion")
+
+
 sidebar_component()
 
 from PIL import Image
