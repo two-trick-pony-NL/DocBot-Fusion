@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state='expanded',
     menu_items={
         'Report a bug': "https://github.com/two-trick-pony-NL/DocBot-Fusion/issues",
-        'Author': "https://petervandoorn.com"
+        'About': "https://petervandoorn.com"
     })
 
 
