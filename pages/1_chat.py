@@ -70,7 +70,7 @@ if not query:
     if st.sidebar.button('🏆 Tell me 3 of my strenghts 🏆', key='suggestion2'):
         query = "Given my work experience on LinkedIn, samenvatting, Publications, ervaring, Belangrijkste vaardigheden,  education, opleiding could you tell me 3 of my strenghts??"
     if st.sidebar.button('💸 What should I cut back on with Spending? ', key='suggestion3'):
-        query = "Do I have time to cook a big meal tomorrow?"
+        query = "What should I cut back spending on?"
     if st.sidebar.button('🍿 What movie should I watch with my family tonight? ', key='suggestion4'):
         query = "Based on my family composition of wife and young daughter, suggest 3 movie ideas for tonight?"
     
