@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import time
-import constants
 
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
@@ -11,7 +10,7 @@ from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.vectorstores import Chroma
 
-os.environ["OPENAI_API_KEY"] = constants.APIKEY
+os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
 PERSIST = True
@@ -25,9 +24,9 @@ previous_data_files = data_files.copy()
 
 
 # Title
-st.title('🔥Docusearch GPT App')
 with st.expander("⚠️ Disclaimer"):
     st.write("This is a AI model, it creates answers on a best effort basis using Statistics. This does not ensure all information is alway 100 percent factual. As a result it's advices to always think and verify before assumgin any information given by the AI is true. ")
+st.title('🔥Docusearch GPT App')
 
 # Initialize chat history
 if "messages" not in st.session_state:
