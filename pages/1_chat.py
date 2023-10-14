@@ -1,3 +1,4 @@
+# Import necessary libraries
 import os
 import streamlit as st
 import time
@@ -9,35 +10,32 @@ from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.vectorstores import Chroma
 from PIL import Image
+
+# Load the app logo
 image = Image.open('images/logo.png')
 st.sidebar.image(image)
 
+# Set OpenAI API key from Streamlit secrets
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
 # Can't persist for now as Streamlit does not support the sqlite database
-PERSIST = False
-
+PERSIST = True
 
 # List files in the "data" folder
 data_folder = "data"
 data_files = [file for file in os.listdir(data_folder) if os.path.isfile(os.path.join(data_folder, file))]
 previous_data_files = data_files.copy()
-# Check if new files were uploaded
-
-# Title
-st.sidebar.title('If chatGPT really knew you, what would it say?')
-st.sidebar.write(
-    "Start chatting with your personal assistant, if you don't know what to talk about then here are some ideas: "
-)
-
-  
 
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-
+# Display title and introductory message
+st.sidebar.title('If chatGPT really knew you, what would it say?')
+st.sidebar.write(
+    "Start chatting with your personal assistant, if you don't know what to talk about then here are some ideas: "
+)
 
 # Display file contents
 st.header("💬 Chat")
@@ -51,29 +49,31 @@ for message in st.session_state.messages:
 query = st.chat_input("What do you want to know?")
 if not query:
     st.success("Ask a question in the chatbox to get started!")
-    # Create three buttons
     # Create three buttons in a row
     col1, col2, col3 = st.columns(3)
-
     # Place buttons in the columns
     button1 = col1.button('What is my schedule tomorrow?')
     button2 = col2.button('What companies did I work for?')
     button3 = col3.button('what was a expensive recent purchase?')
+    # Define behavior when buttons are clicked
     if button1:
         query = "What is my schedule tomorrow?"
     if button2:
         query = "What companies did I work for?"
     if button3:
         query = "what was the most expensive thing I bought recently?"
+
+    # Additional suggestions in the sidebar
     if st.sidebar.button('👨🏻‍🍳 Do I have time to cook a big meal tomorrow? ', key='suggestion1'):
         query = "Do I have time to cook a big meal tomorrow?"
-    if st.sidebar.button('🏆 Tell me 3 of my strenghts 🏆', key='suggestion2'):
-        query = "Given my work experience on LinkedIn, samenvatting, Publications, ervaring, Belangrijkste vaardigheden,  education, opleiding could you tell me 3 of my strenghts??"
+    if st.sidebar.button('🏆 Tell me 3 of my strengths 🏆', key='suggestion2'):
+        query = "Given my work experience on LinkedIn, samenvatting, Publications, ervaring, Belangrijkste vaardigheden,  education, opleiding could you tell me 3 of my strengths??"
     if st.sidebar.button('💸 What should I cut back on with Spending? ', key='suggestion3'):
         query = "What should I cut back spending on?"
     if st.sidebar.button('🍿 What movie should I watch with my family tonight? ', key='suggestion4'):
         query = "Based on my family composition of wife and young daughter, suggest 3 movie ideas for tonight?"
-    
+
+# Chat with the assistant based on user input
 if query:
     with st.spinner("Hang on..."):
         with st.chat_message("user"):
@@ -81,6 +81,7 @@ if query:
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": query})
 
+        # Initialize the ConversationalRetrievalChain
         if PERSIST and os.path.exists("persist"):
             print("Reusing index...\n")
             vectorstore = Chroma(persist_directory="persist", embedding_function=OpenAIEmbeddings())
@@ -99,6 +100,7 @@ if query:
             retriever=index.vectorstore.as_retriever(search_kwargs={"k": 1}),
         )
 
+        # Chat with the assistant and display the response
         chat_history = []
         if query:
             result = chain({"question": query, "chat_history": chat_history})
@@ -118,6 +120,7 @@ if query:
                 # Add assistant response to chat history
                 st.session_state.messages.append({"role": "assistant", "content": result["answer"]})
 
+# Display disclaimers in the sidebar expander
 with st.sidebar.expander("⚠️ Disclaimer"):
     st.write("""
              ### AI is just statistics, it can't really think and thus can't be trusted to tell the truth
