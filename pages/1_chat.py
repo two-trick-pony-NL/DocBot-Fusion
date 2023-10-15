@@ -18,10 +18,10 @@ llm_cache = InMemoryCache()
 set_llm_cache(llm_cache)
 
 from PIL import Image
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-import sqlite3
+#__import__('pysqlite3')
+#import sys
+#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+#import sqlite3
 
 # Load the app logo
 image = Image.open('images/logo.png')
@@ -50,8 +50,24 @@ PERSIST = True
 
 # List files in the "data" folder
 data_folder = "data"
+if not os.path.exists(data_folder):
+    os.makedirs(data_folder)
 data_files = [file for file in os.listdir(data_folder) if os.path.isfile(os.path.join(data_folder, file))]
 previous_data_files = data_files.copy()
+
+def delete_data_folder():
+    folder_path = 'data'
+
+    # Check if the folder exists
+    if os.path.exists(folder_path):
+        try:
+            # Remove the folder and its contents
+            shutil.rmtree(folder_path)
+            print(f"The folder '{folder_path}' has been successfully deleted.")
+        except Exception as e:
+            print(f"Error: {e}")
+    else:
+        print(f"The folder '{folder_path}' does not exist.")
 
 # Initialize chat history
 if "messages" not in st.session_state:

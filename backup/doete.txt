@@ -1,0 +1,2 @@
+Laura is a my child she is just 2 years old. She loves her stuffed animals and to play on the playground. She likes burritos and dishes with tomato sauce such as pasta and lasagna. Tonight we’ll eat surinam food though. Me and Laura have been watching airplanes today at the Hilversum airport. 
+Laura ate a lot of surinam food last night she seemed to have loved it. 
