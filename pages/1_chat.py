@@ -18,10 +18,10 @@ llm_cache = InMemoryCache()
 set_llm_cache(llm_cache)
 
 from PIL import Image
-#__import__('pysqlite3')
-#import sys
-#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-#import sqlite3
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+import sqlite3
 
 # Load the app logo
 image = Image.open('images/logo.png')
