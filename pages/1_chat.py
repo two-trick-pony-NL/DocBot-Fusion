@@ -10,6 +10,8 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.vectorstores import Chroma
+from langchain.prompts import ChatPromptTemplate
+from langchain.prompts.chat import SystemMessage, HumanMessagePromptTemplate
 
 # Create an instance of InMemoryCache
 llm_cache = InMemoryCache()
@@ -18,10 +20,10 @@ llm_cache = InMemoryCache()
 set_llm_cache(llm_cache)
 
 from PIL import Image
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-import sqlite3
+#__import__('pysqlite3')
+#import sys
+#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+#import sqlite3
 
 # Load the app logo
 image = Image.open('images/logo.png')
@@ -140,10 +142,20 @@ if query:
                 )
             else:
                 index = VectorstoreIndexCreator().from_loaders([loader])
-
+            
         chain = ConversationalRetrievalChain.from_llm(
-            llm=ChatOpenAI(model="gpt-3.5-turbo", cache=True, temperature=1.2),
-            retriever=index.vectorstore.as_retriever(search_kwargs={"k": 1}),
+            llm=ChatOpenAI(
+                model="gpt-3.5-turbo", 
+                cache=True, temperature=1.6),
+
+            # See documentation on retrievers: https://python.langchain.com/docs/modules/data_connection/retrievers/vectorstore 
+            #retriever=index.vectorstore.as_retriever(search_kwargs={"k": 1}),
+            #retriever=index.vectorstore.as_retriever(search_kwargs={"k": 3}),
+            retriever=index.vectorstore.as_retriever(search_type="similarity_score_threshold", search_kwargs={"score_threshold": .3})
+            #retriever=index.vectorstore.as_retriever(search_type="mmr")
+
+
+
         )
 
         # Chat with the assistant and display the response
