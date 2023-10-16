@@ -10,11 +10,33 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.vectorstores import Chroma
-from langchain.prompts import ChatPromptTemplate
-from langchain.prompts.chat import SystemMessage, HumanMessagePromptTemplate
+import shutil
+import json
+from annotated_text import annotated_text
+
+
+def find_common_words(string1, string2):
+    string1 = string1.lower()
+    string2 = string2.lower()
+    words1 = string1.split()
+    words2 = string2.split()
+
+    result = []
+
+    for word1 in words1:
+        found = any(word1 in word2 or word2 in word1 for word2 in words2)
+        if found and len(word1) > 4:
+            result.append((word1, ""))
+        else:
+            result.append(word1 + " ")
+
+    return annotated_text(result)
 
 # Create an instance of InMemoryCache
 llm_cache = InMemoryCache()
+
+
+
 
 # Set the llm_cache using set_llm_cache function
 set_llm_cache(llm_cache)
@@ -47,8 +69,11 @@ if uploaded_file is not None:
 
     st.success(f"File '{file_name}' uploaded successfully!")
 
-# Set OpenAI API key from Streamlit secrets
+# Set OpenAI and Zapier API key from Streamlit secrets
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
+os.environ["ZAPIER_NLA_API_KEY"] = st.secrets.ZAPIERKEY
+
+
 
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
 # Can't persist for now as Streamlit does not support the sqlite database
@@ -75,12 +100,31 @@ def delete_data_folder():
             print(f"Error: {e}")
     else:
         print(f"The folder '{folder_path}' does not exist.")
+        
+def delete_persistence():
+    folder_path = 'persist'
+
+    # Check if the folder exists
+    if os.path.exists(folder_path):
+        try:
+            # Remove the folder and its contents
+            shutil.rmtree(folder_path)
+            print(f"The folder '{folder_path}' has been successfully deleted.")
+        except Exception as e:
+            print(f"Error: {e}")
+    else:
+        print(f"The folder '{folder_path}' does not exist.")
 
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
     st.session_state.chat_history = []
+    
+    
+if st.sidebar.button("🔄 Refresh", type="primary"):
+    delete_persistence()
 
+ 
 
 # Display title and introductory message
 st.sidebar.title('If chatGPT really knew you, what would it say?')
@@ -153,7 +197,8 @@ if query:
         chain = ConversationalRetrievalChain.from_llm(
             llm=ChatOpenAI(
                 model="gpt-3.5-turbo", 
-                cache=True, temperature=1.6),
+                cache=True, temperature=1.3), 
+            return_source_documents=True,
 
             # See documentation on retrievers: https://python.langchain.com/docs/modules/data_connection/retrievers/vectorstore 
             #retriever=index.vectorstore.as_retriever(search_kwargs={"k": 1}),
@@ -167,8 +212,19 @@ if query:
 
         # Chat with the assistant and display the response
         if query:
-            print(chat_history)
             result = chain({"question": query, "chat_history": chat_history})
+            with st.expander("ℹ️ Source"):
+                    document = result["source_documents"][0]
+                    print("##### DOCUMETN ####")
+                    print(document)
+                    # Extracting page content and metadata
+                    page_content = str(document.page_content)
+                    metadata = str(document.metadata)
+                    data_dict = json.loads(metadata.replace("'", "\""))
+                    source_value = data_dict['source']
+                    st.markdown(f"### {source_value}")
+                    st.write(find_common_words(page_content, query))
+
             chat_history.append((query, result['answer']))
             with st.chat_message("assistant"):
                 message_placeholder = st.empty()
@@ -182,8 +238,12 @@ if query:
                     # Add a blinking cursor to simulate typing
                     message_placeholder.markdown(full_response + "▌")
                 message_placeholder.markdown(full_response)
+    
                 # Add assistant response to chat history
                 st.session_state.messages.append({"role": "assistant", "content": result["answer"]})
+                
+                
+
                 
     # Save the updated chat history back to session state
     st.session_state.chat_history = chat_history
