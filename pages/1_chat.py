@@ -25,7 +25,7 @@ def find_common_words(string1, string2):
 
     for word1 in words1:
         found = any(word1 in word2 or word2 in word1 for word2 in words2)
-        if found and len(word1) > 4:
+        if found and len(word1) > 3:
             result.append((word1, ""))
         else:
             result.append(word1 + " ")
