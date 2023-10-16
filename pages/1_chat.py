@@ -54,6 +54,7 @@ os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 # Can't persist for now as Streamlit does not support the sqlite database
 PERSIST = True
 
+
 # List files in the "data" folder
 data_folder = "data"
 if not os.path.exists(data_folder):
@@ -78,6 +79,8 @@ def delete_data_folder():
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
+    st.session_state.chat_history = []
+
 
 # Display title and introductory message
 st.sidebar.title('If chatGPT really knew you, what would it say?')
@@ -123,11 +126,15 @@ if not query:
 
 # Chat with the assistant based on user input
 if query:
+    chat_history = st.session_state.chat_history
     with st.spinner("Hang on..."):
         with st.chat_message("user"):
             st.markdown(query)
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": query})
+
+        
+
 
         # Initialize the ConversationalRetrievalChain
         if PERSIST and os.path.exists("persist"):
@@ -159,8 +166,8 @@ if query:
         )
 
         # Chat with the assistant and display the response
-        chat_history = []
         if query:
+            print(chat_history)
             result = chain({"question": query, "chat_history": chat_history})
             chat_history.append((query, result['answer']))
             with st.chat_message("assistant"):
@@ -177,6 +184,10 @@ if query:
                 message_placeholder.markdown(full_response)
                 # Add assistant response to chat history
                 st.session_state.messages.append({"role": "assistant", "content": result["answer"]})
+                
+    # Save the updated chat history back to session state
+    st.session_state.chat_history = chat_history
+
 
 # Display disclaimers in the sidebar expander
 with st.sidebar.expander("⚠️ Disclaimer"):
