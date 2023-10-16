@@ -1,4 +1,6 @@
 import streamlit as st
+import os
+
 #from components.logo import logo_component
 from components.sidebar import sidebar_component
 st.set_page_config(
@@ -14,6 +16,7 @@ st.set_page_config(
 
 
 sidebar_component()
+
 
 
 from PIL import Image
@@ -53,6 +56,10 @@ st.markdown(
 uploaded_file = st.file_uploader("", type=['pdf', 'txt'])
 # Save uploaded files to disk
 if uploaded_file is not None:
+    # Create a folder if it doesn't exist
+    data_folder = 'data'
+    if not os.path.exists(data_folder):
+        os.makedirs(data_folder)
     # Use the original filename
     file_name = str(uploaded_file.name)
     file_path = os.path.join(data_folder, file_name)

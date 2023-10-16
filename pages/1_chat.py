@@ -31,6 +31,10 @@ st.sidebar.image(image)
 uploaded_file = st.sidebar.file_uploader("", type=['pdf', 'txt'])
 # Save uploaded files to disk
 if uploaded_file is not None:
+    # Create a folder if it doesn't exist
+    data_folder = 'data'
+    if not os.path.exists(data_folder):
+        os.makedirs(data_folder)
     # Use the original filename
     file_name = str(uploaded_file.name)
     file_path = os.path.join(data_folder, file_name)
