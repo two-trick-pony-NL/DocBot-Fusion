@@ -42,7 +42,7 @@ st.markdown("""
     - 📤 just upload some files like your calendar 📆 and preferences of your family 👨‍👩‍👧
     
     - 💬 Start chatting
-    - 🤓 Get personalsid responses
+    - 🤓 Get personalised responses
     
 """
 )
