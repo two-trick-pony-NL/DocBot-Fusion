@@ -19,7 +19,7 @@ def add_question_row(count):
     csv_path = get_csv_path(filename)
     questions_df = read_csv_to_df(filename)
     new_row = {'timestamp': datetime.now(), 'question_count': count}
-    questions_df = questions_df.append(new_row, ignore_index=True)
+    questions_df = pd.concat([questions_df, pd.DataFrame([new_row])], ignore_index=True)
     questions_df.to_csv(csv_path, index=False)
     return questions_df
 
@@ -28,7 +28,7 @@ def add_file_row(count):
     csv_path = get_csv_path(filename)
     files_df = read_csv_to_df(filename)
     new_row = {'timestamp': datetime.now(), 'upload_count': count}
-    files_df = files_df.append(new_row, ignore_index=True)
+    files_df = pd.concat([files_df, pd.DataFrame([new_row])], ignore_index=True)
     files_df.to_csv(csv_path, index=False)
     return files_df
 
@@ -37,6 +37,6 @@ def add_pageview_row(count):
     csv_path = get_csv_path(filename)
     pageviews_df = read_csv_to_df(filename)
     new_row = {'timestamp': datetime.now(), 'pageview_count': count}
-    pageviews_df = pageviews_df.append(new_row, ignore_index=True)
+    pageviews_df = pd.concat([pageviews_df, pd.DataFrame([new_row])], ignore_index=True)
     pageviews_df.to_csv(csv_path, index=False)
     return pageviews_df
