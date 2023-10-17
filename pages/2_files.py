@@ -23,7 +23,7 @@ if st.sidebar.button("Delete all files", key='delete', use_container_width=True)
     st.success("Files deleted successfully!")
 
 
-st.sidebar.title('If chatGPT really knew you, what would it say?')
+st.sidebar.title('If chatGPT could read your documents, what would it say?')
 st.sidebar.write(
     "The more documents you upload the better responses we'll generate. Here are some ideas of documents you could upload: "
 )
