@@ -34,15 +34,14 @@ st.markdown(
     Well you're about to find out. With DocbotGPT you fuse ChatGPT with **your** files so that it knows what's going on in your life.""")
 
 # Place buttons in the columns
-st.markdown('<a href="/chat" target="_self">Start Chat 💬 </a>', unsafe_allow_html=True)
-st.markdown('<a href="/files" target="_self">Upload files 🗂️ </a>', unsafe_allow_html=True)
+st.markdown('<a href="/chat" target="_self">💬 Start Chat  </a>', unsafe_allow_html=True)
+st.markdown('<a href="/files" target="_self">🗂️ Upload files  </a>', unsafe_allow_html=True)
 
 st.markdown("""
     ## How does that work? Simple:
-    - 📤 just upload some files like your calendar 📆 and preferences of your family 👨‍👩‍👧
-    
-    - 💬 Start chatting
-    - 🤓 Get personalised responses
+    📤 just upload some files with data about you   
+    💬 Start chatting  
+    🤓 Get personalised responses  
     
 """
 )

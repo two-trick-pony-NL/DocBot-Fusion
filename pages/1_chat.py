@@ -27,10 +27,10 @@ llm_cache = InMemoryCache()
 set_llm_cache(llm_cache)
 
 from PIL import Image
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-import sqlite3
+#__import__('pysqlite3')
+#import sys
+#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+#import sqlite3
 
 # Load the app logo
 image = Image.open('images/logo.png')
@@ -86,13 +86,13 @@ if not query:
     st.sidebar.write(
     "Start chatting with your personal assistant, if you don't know what to talk about then here are some ideas: "
 )
-    if st.sidebar.button('👨🏻‍🍳 Do I have time to cook a big meal tomorrow? ', key='suggestion1'):
+    if st.sidebar.button('👨🏻‍🍳 Do I have time to cook a big meal tomorrow? ', key='suggestion1', use_container_width=True):
         query = "Do I have time to cook a big meal tomorrow?"
-    if st.sidebar.button('🏆 Tell me 3 of my strengths 🏆', key='suggestion2'):
+    if st.sidebar.button('🏆 Tell me 3 of my strengths', key='suggestion2', use_container_width=True):
         query = "Given my work experience on LinkedIn, samenvatting, Publications, ervaring, Belangrijkste vaardigheden,  education, opleiding could you tell me 3 of my strengths??"
     if st.sidebar.button('💸 What should I cut back on with Spending? ', key='suggestion3'):
         query = "What should I cut back spending on?"
-    if st.sidebar.button('🍿 What movie should I watch with my family tonight? ', key='suggestion4'):
+    if st.sidebar.button('🍿 What movie should I watch with my family tonight? ', key='suggestion4', use_container_width=True ):
         query = "Based on my family composition of wife and young daughter, suggest 3 movie ideas for tonight?"
 
 # Chat with the assistant based on user input
@@ -122,7 +122,7 @@ if query:
             
         chain = ConversationalRetrievalChain.from_llm(
             llm=ChatOpenAI(
-                model="GPT-3.5-turbo", 
+                model="gpt-3.5-turbo", 
                 cache=True, temperature=1.3), 
             return_source_documents=True,
 
