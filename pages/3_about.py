@@ -1,7 +1,9 @@
 import streamlit as st
-from components.disclaimer import disclaimer
 from PIL import Image
 from utilities.metrics import *
+from components.disclaimer import disclaimer
+import pandas as pd
+
 add_pageview_row(1)
 
 image = Image.open('images/logo.png')
@@ -57,45 +59,56 @@ st.write("*Note: This tool heavily uses a Large Language Model, and while impres
 
 # Load the app logo
 
-
 st.title("Analytics 📈")
 st.write("Some simple metrics on a dashboard to see how many people use the bot")
 
 col1, col2, col3 = st.columns(3)
 
 # Total Questions Metric
-total_questions = read_csv_to_df('questions.csv')['question_count'].sum()
-last_question_timestamp = read_csv_to_df('questions.csv')['timestamp'].max()
+questions_df = read_csv_to_df('questions.csv')
+questions_df['timestamp'] = pd.to_datetime(questions_df['timestamp'])
+questions_df.set_index('timestamp', inplace=True)  # Set timestamp as index
+total_questions = questions_df['question_count'].sum()
+last_question_timestamp = questions_df.index.max()
 col1.metric("Total Questions Answered", f"{total_questions}", f"Last Question: {last_question_timestamp}")
 
 # Total Files Metric
 files_df = read_csv_to_df('files.csv')
+files_df['timestamp'] = pd.to_datetime(files_df['timestamp'])
+files_df.set_index('timestamp', inplace=True)  # Set timestamp as index
 total_files_uploaded = files_df['upload_count'].sum()
-last_file_timestamp = files_df['timestamp'].max()
+last_file_timestamp = files_df.index.max()
 col2.metric("Total Files Uploaded", f"{total_files_uploaded}", f"Last Upload: {last_file_timestamp}")
 
 # Total Page Views Metric
 pageviews_df = read_csv_to_df('pageviews.csv')
+pageviews_df['timestamp'] = pd.to_datetime(pageviews_df['timestamp'])
+pageviews_df.set_index('timestamp', inplace=True)  # Set timestamp as index
+
+# Resample pageviews data to 30-minute intervals
+pageviews_resampled = pageviews_df.resample('H').count()
+
 total_pageviews = pageviews_df['pageview_count'].sum()
-last_pageview_timestamp = pageviews_df['timestamp'].max()
+last_pageview_timestamp = pageviews_df.index.max()
 col3.metric("Total Page Views", f"{total_pageviews}", f"Last Page View: {last_pageview_timestamp}")
 
 # Create bar charts showing usage over time for questions, files, and page views
 st.subheader("Questions Over Time")
 
+# Resample questions data to 30-minute intervals
+questions_resampled = questions_df.resample('H').count()
+
 # Questions Over Time
-st.bar_chart(read_csv_to_df('questions.csv').set_index('timestamp'))
+st.bar_chart(questions_resampled['question_count'])
 
 # Files Over Time
 st.subheader("File uploads Over Time")
-st.bar_chart(files_df.set_index('timestamp'))
+files_resampled = files_df.resample('H').sum()  # Adjust 'sum()' to your desired aggregation
+st.bar_chart(files_resampled['upload_count'])
 
 # Page Views Over Time
 st.subheader("Page Views Over Time")
-st.bar_chart(pageviews_df.set_index('timestamp'))
-
-
+st.bar_chart(pageviews_resampled['pageview_count'])
 
 with st.expander("⚠️ Disclaimer"):
     disclaimer()
-    
