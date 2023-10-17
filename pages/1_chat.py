@@ -139,17 +139,20 @@ if query:
         # Chat with the assistant and display the response
         if query:
             result = chain({"question": query, "chat_history": chat_history})
-            with st.expander("ℹ️ Source"):
-                    document = result["source_documents"][0]
-                    print("##### DOCUMETN ####")
-                    print(document)
-                    # Extracting page content and metadata
-                    page_content = str(document.page_content)
-                    metadata = str(document.metadata)
-                    data_dict = json.loads(metadata.replace("'", "\""))
-                    source_value = data_dict['source']
-                    st.markdown(f"### {source_value}")
-                    st.markdown(find_common_words(page_content, query))
+            try:
+                with st.expander("ℹ️ Source"):
+                        document = result["source_documents"][0]
+                        print("##### DOCUMETN ####")
+                        print(document)
+                        # Extracting page content and metadata
+                        page_content = str(document.page_content)
+                        metadata = str(document.metadata)
+                        data_dict = json.loads(metadata.replace("'", "\""))
+                        source_value = data_dict['source']
+                        st.markdown(f"### {source_value}")
+                        st.markdown(find_common_words(page_content, query))
+            except:
+                print("no source")
 
             chat_history.append((query, result['answer']))
             with st.chat_message("assistant"):
