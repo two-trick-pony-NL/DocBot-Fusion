@@ -115,17 +115,18 @@ if query:
         
 
         # Initialize the ConversationalRetrievalChain
+        #If we already have a vectorstore  then we can just reuse what we already know about the documents
         if PERSIST and os.path.exists("persist"):
             print("Reusing index...\n")
             vectorstore = Chroma(persist_directory="persist", embedding_function=OpenAIEmbeddings())
             index = VectorStoreIndexWrapper(vectorstore=vectorstore)
-        else:
+        else: #If the folder persist does not exist we create a new persist folder and read the data files in it
             loader = DirectoryLoader(data_folder)
             if PERSIST:
                 index = VectorstoreIndexCreator(vectorstore_kwargs={"persist_directory": "persist"}).from_loaders(
                     [loader]
                 )
-            else:
+            else: #If both don't exist we'll create a new index every time we type Beware this is very inefficient
                 index = VectorstoreIndexCreator().from_loaders([loader])
             
         chain = ConversationalRetrievalChain.from_llm(

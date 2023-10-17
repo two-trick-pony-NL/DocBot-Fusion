@@ -9,6 +9,8 @@ from components.disclaimer import disclaimer
 from utilities.metrics import *
 add_pageview_row(1)
 
+FILETYPES=['.eml', '.html', '.json', '.md', '.msg', '.rst', '.rtf', '.txt', '.xml','.csv', '.doc', '.docx', '.epub', '.odt', '.pdf', '.ppt', '.pptx', '.tsv', '.xlsx']
+
 
 image = Image.open('images/logo.png')
 st.sidebar.image(image)
@@ -67,7 +69,7 @@ uploaded_files_list = os.listdir(data_folder)
 
 
 # Call the function to save the uploaded file
-uploaded_file = st.file_uploader("", type=['pdf', 'txt'], accept_multiple_files=True)
+uploaded_file = st.file_uploader("", type=FILETYPES, accept_multiple_files=True)
 save_uploaded_file(uploaded_file, data_folder)
 
 # Display file content if a file is selected
@@ -89,12 +91,21 @@ selected_file = st.selectbox("Select File to Preview", uploaded_files_list)
 if selected_file:
     file_path = os.path.join(data_folder, selected_file)
     file_extension = selected_file.split('.')[-1]
+    previewable = ['txt', 'py', 'md','json', 'odt']
     
     if file_extension.lower() == 'csv':
-        df = pd.read_csv(file_path)
-        st.write("### Preview of Selected CSV File")
-        st.write(df)
-    elif file_extension.lower() == 'txt' or file_extension.lower() == 'py':
+        try:
+            df = pd.read_csv(file_path)
+            st.write("### Preview of Selected CSV File")
+            st.write(df)
+        except pd.errors.EmptyDataError:
+            st.warning("The selected CSV file is empty.")
+            
+        except Exception as e:
+            
+            st.error(f"An error occurred while reading the CSV file: {e}")
+    
+    elif file_extension.lower() in previewable:
         with open(file_path, 'r') as file:
             text_content = file.read()
             st.write("### Preview of Selected Text File")
