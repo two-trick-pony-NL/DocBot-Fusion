@@ -9,7 +9,7 @@ from components.disclaimer import disclaimer
 from utilities.metrics import *
 add_pageview_row(1)
 
-FILETYPES=['.eml', '.html', '.json', '.md', '.msg', '.rst', '.rtf', '.txt', '.xml','.csv', '.doc', '.docx', '.epub', '.odt', '.pdf', '.ppt', '.pptx', '.tsv', '.xlsx']
+FILETYPES=['.eml', '.html', '.json', '.md', '.msg', '.rst', '.rtf', '.txt', '.xml','.csv', '.doc', '.docx', '.epub', '.odt', '.pdf','.tsv', '.xlsx']
 
 
 image = Image.open('images/logo.png')
