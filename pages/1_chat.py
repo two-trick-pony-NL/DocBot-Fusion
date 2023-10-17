@@ -223,7 +223,7 @@ if query:
                     data_dict = json.loads(metadata.replace("'", "\""))
                     source_value = data_dict['source']
                     st.markdown(f"### {source_value}")
-                    st.write(find_common_words(page_content, query))
+                    st.markdown(find_common_words(page_content, query))
 
             chat_history.append((query, result['answer']))
             with st.chat_message("assistant"):
