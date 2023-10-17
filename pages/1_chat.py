@@ -136,8 +136,8 @@ if query:
 
             # See documentation on retrievers: https://python.langchain.com/docs/modules/data_connection/retrievers/vectorstore 
             #retriever=index.vectorstore.as_retriever(search_kwargs={"k": 1}),
-            #retriever=index.vectorstore.as_retriever(search_kwargs={"k": 3}),
-            retriever=index.vectorstore.as_retriever(search_type="similarity_score_threshold", search_kwargs={"score_threshold": .3})
+            retriever=index.vectorstore.as_retriever(search_kwargs={"k": 3}),
+            #retriever=index.vectorstore.as_retriever(search_type="similarity_score_threshold", search_kwargs={"score_threshold": .3})
             #retriever=index.vectorstore.as_retriever(search_type="mmr")
 
 
