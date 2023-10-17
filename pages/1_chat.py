@@ -29,10 +29,15 @@ llm_cache = InMemoryCache()
 set_llm_cache(llm_cache)
 
 from PIL import Image
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-import sqlite3
+
+# We need this as it won't work on my computer, but streamlit needs it in order for Chroma to work. 
+try: 
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+    import sqlite3
+except:
+    print("local computer")
 
 # Load the app logo
 image = Image.open('images/logo.png')
