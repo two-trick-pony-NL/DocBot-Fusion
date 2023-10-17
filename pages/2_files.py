@@ -9,14 +9,14 @@ from components.disclaimer import disclaimer
 from utilities.metrics import *
 add_pageview_row(1)
 
-FILETYPES=['.eml', '.html', '.json', '.md', '.msg', '.rst', '.rtf', '.txt', '.xml','.csv', '.doc', '.docx', '.epub', '.odt', '.pdf','.tsv', '.xlsx']
+FILETYPES=['.html', '.md', '.rtf', '.txt', '.xml','.csv', '.doc', '.docx', '.odt', '.pdf']
 
 
 image = Image.open('images/logo.png')
 st.sidebar.image(image)
 
 # Restore button
-if st.sidebar.button("Use Demo Files", key='restore', type="primary", use_container_width=True):
+if st.sidebar.button("Use Demo Files", key='restore', use_container_width=True):
     print('restore function')
     delete_persistence() # Deleting all we know
     demo_data() #setting demo data
@@ -73,7 +73,7 @@ uploaded_file = st.file_uploader("", type=FILETYPES, accept_multiple_files=True)
 save_uploaded_file(uploaded_file, data_folder)
 
 # Display file content if a file is selected
-if st.button("Use Demo Files", key='restorebig', type="primary", use_container_width=True):
+if st.button("Use Demo Files", key='restorebig', use_container_width=True):
     print('restore function')
     delete_persistence() # Deleting all we know
     demo_data() #setting demo data
