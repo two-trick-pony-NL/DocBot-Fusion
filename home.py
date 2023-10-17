@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon='💬',
     initial_sidebar_state='expanded',
     menu_items={
-        'Report a bug': "https://github.com/two-trick-pony-NL/DocBot-Fusion/issues",
+        'Report a bug': "https://github.com/two-trick-pony-NL/DocBotGPT/issues",
         'About': "https://petervandoorn.com"
     })
 

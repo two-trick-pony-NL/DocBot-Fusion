@@ -122,7 +122,7 @@ if query:
             
         chain = ConversationalRetrievalChain.from_llm(
             llm=ChatOpenAI(
-                model="gpt-3.5-turbo", 
+                model="GPT-3.5-turbo", 
                 cache=True, temperature=1.3), 
             return_source_documents=True,
 

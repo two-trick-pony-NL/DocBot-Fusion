@@ -25,7 +25,7 @@ st.image(example)
 st.markdown(
     """
     ### Open source
-    If you're curious how this tool works, then you can. The code is [here](https://github.com/two-trick-pony-NL/DocBot-Fusion). 
+    If you're curious how this tool works, then you can. The code is [here](https://github.com/two-trick-pony-NL/DocBotGPT). 
     Feel free to open a issue or pull request with improvements. 
 """
 )
@@ -45,7 +45,7 @@ st.markdown(
 st.markdown(
     """
     ### Contact
-    - Open an issue on github [here](https://github.com/two-trick-pony-NL/DocBot-Fusion)
+    - Open an issue on github [here](https://github.com/two-trick-pony-NL/DocBotGPT)
     - Send me an email docbot-fusion@petervandoorn.com
     - Or visit my website: https://petervandoorn.com
 """
