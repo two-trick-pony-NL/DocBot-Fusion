@@ -1,65 +1,60 @@
 import streamlit as st
-from components.sidebar import sidebar_component
-sidebar_component()
+from components.disclaimer import disclaimer
+from PIL import Image
+
+image = Image.open('images/logo.png')
+example = Image.open('images/example.png')
+
 
 
 st.write("# About DocBot Fusion 👋")
-st.write("**DocBot Fusion** is an innovative web application that combines the conversational prowess of ChatGPT with advanced document analysis. Created by Peter van Doorn, this app processes uploaded documents, extracting insights and generating contextually relevant responses.")
-st.write("**The page is a combination of Streamlit, Langchain and the OpenAI APIs that connect us to chatGPT. The goal of this app is to learn, it is mostly a proof of concept. However it should also raise questions on what kind of information you're willing to upload to a random app on the internet")
-st.write("## Key Features:")
-st.write("- Seamless Integration: The app seamlessly integrates ChatGPT's conversational abilities with document analysis.")
-st.write("- Document Processing: Upload documents for extraction of valuable insights and contextually relevant responses.")
-st.write("- Conversational Retrieval Chain: Powered by the sophisticated Conversational Retrieval Chain, orchestrating user queries with the ChatOpenAI model.")
-st.write("- Persistence: The app enables model reuse for repeated queries on the same data, optimizing performance.")
-st.write("## Contact and Code")
-st.write("Explore and utilize the app's code on [GitHub](https://github.com/two-trick-pony-NL/gpt-document-search).")
-st.write("If you want to get in touch: simply open an issue on Github")
+st.write("Experience the future of document interaction with our cutting-edge AI. Unleash the power of intelligent document analysis as our AI effortlessly sifts through your files, understanding their content. Engage in seamless conversations and unlock insights with a chat interface that allows you to ask questions and receive instant, accurate responses about your documents.")
+
+st.markdown(
+    """
+     ## Example chat
+
+    """
+)
+
+st.image(example)
+
+
+
+
+st.markdown(
+    """
+    ### Open source
+    If you're curious how this tool works, then you can. The code is [here](https://github.com/two-trick-pony-NL/DocBot-Fusion). 
+    Feel free to open a issue or pull request with improvements. 
+"""
+)
+
+st.markdown(
+    """
+    ### Roadmap
+    This is just a MVP as proof of concept, it does not have 'users' or accounts all documents are just in 1 big pile. 
+    - Register users and split each users files in their own S3 buckets
+    - Provide source information (how did the LLM get it's answer)
+    - Integrate with Lanchain Tools and Agents 
+    - Connect up with Zapier so that the AI can execute tasks
+    - Connect up to a personalised documents stores like Google Drive, Dropbox or S3
+"""
+)
+
+st.markdown(
+    """
+    ### Contact
+    - Open an issue on github [here](https://github.com/two-trick-pony-NL/DocBot-Fusion)
+    - Send me an email docbot-fusion@petervandoorn.com
+    - Or visit my website: https://petervandoorn.com
+"""
+)
+
 st.write("---")
-st.write("*Note: This page was generated using Streamlit and is designed to offer an interactive and informative experience.*")
+st.write("*Note: This tool heavily uses a Large Language Model, and while impressive: might not always produce accurate answers. See full disclaimer.*")
 
 
 with st.expander("⚠️ Disclaimer"):
-    st.write("""
-             ### AI is just statistics, it can't really think and thus can't be trusted to tell the truth
-             This site may produce inaccurate information - Generative AI Is just fancy statistics. So in a clever way all the words you see generated are just the most probable next words. Without basing them in any facts. Always use your own judgement when reading the results from this AI.  """)
-    st.write("""
-    ### Privacy Disclaimer
-
-    **Your Choices Matter:**
-    This app allows you to upload and preview personal documents. Be mindful of the information you choose to share. Only upload and interact with documents that you are comfortable sharing, and always consider the privacy implications.
-
-    **Sensitive Information:**
-    Avoid uploading sensitive or confidential information unless necessary. Understand that the app processes information for display purposes only and doesn't store or transmit your data.
-
-    **Your Responsibility:**
-    You are responsible for the documents you choose to upload. Ensure you comply with privacy laws and regulations. Be cautious about sharing personally identifiable information.
-
-    **Security Measures:**
-    While we take measures to ensure the security of the app, there is always a risk associated with online interactions. Use the app in a secure and private environment.
-
-    **Questions or Concerns:**
-    If you have questions or concerns about privacy, feel free to reach out to us.
-
-    """)
-    st.write("""
-    ### No Responsibility Disclaimer
-
-    **Use at Your Own Risk:**
-    This app is provided as-is, and we do not guarantee the accuracy or completeness of the information it produces. The app generates answers based on statistical data and may not always provide factual information.
-
-    **Limitation of Liability:**
-    We disclaim any responsibility for the consequences of using this app. The information provided is for informational purposes only, and we do not accept any liability for actions taken based on the app's outputs.
-
-    **User Responsibility:**
-    You, as the user, are solely responsible for the choices you make based on the information generated by the app. Verify critical information independently before making decisions.
-
-    **No Warranty:**
-    We make no warranties, expressed or implied, regarding the app's functionality, accuracy, or fitness for a particular purpose.
-
-    **Changes and Updates:**
-    We may update or modify the app without notice, and we are not obligated to provide support or updates.
-
-    **Questions or Concerns:**
-    If you have any questions or concerns, please contact us.
-
-    """)
+    disclaimer()
+    
