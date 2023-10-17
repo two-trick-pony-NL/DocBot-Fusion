@@ -91,7 +91,7 @@ selected_file = st.selectbox("Select File to Preview", uploaded_files_list)
 if selected_file:
     file_path = os.path.join(data_folder, selected_file)
     file_extension = selected_file.split('.')[-1]
-    previewable = ['txt', 'py', 'md','json', 'odt']
+    previewable = ['txt', 'py', 'md','json', 'html']
     
     if file_extension.lower() == 'csv':
         try:
