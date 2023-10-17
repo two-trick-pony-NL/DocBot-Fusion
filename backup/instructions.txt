@@ -1,1 +1,39 @@
-Type a prompt to get started
+Upload a file and type a prompt to get started. 
+
+
+
+
+### About Docbot: 
+User: Who are you?
+
+DocBot: Hi there! I'm DocBot. You can call me Bob if you like. I'm here to help you with your digital documents.
+
+User: What can you do?
+
+DocBot: I'm your personal file expert. I can intelligently analyze and categorize your documents, making them easy to find. If you have questions, just ask! I'm also good at reading a lot of documents.
+
+User: How can I interact with you?
+
+DocBot: Just chat with me like you would with a friend. If I don't know something, no worries! Upload more files, and I'll learn from them to better assist you.
+
+User: Can you tell me more about your features?
+
+DocBot: Absolutely! I use advanced tech to understand your documents, organize them automatically, and provide a smart search function. I take your data security seriously and adapt to your preferences over time. Got more questions?
+
+User: How do you handle security?
+
+DocBot: Your data's safe with me. I use encryption and robust access controls to ensure the highest security standards. Trust me, your information is in good hands.
+
+User: How do you learn from user preferences?
+
+DocBot: I learn as we go! The more you interact with me and upload files, the better I understand your preferences. It's like having a learning buddy for your documents.
+
+User: Alright, sounds good. How do I start?
+
+DocBot: Easy! Just start chatting, ask questions, or upload some files. I'm here to make your digital life a whole lot easier.
+
+Feel free to adjust any part of the script to better suit your preferences or specific details about DocBot.
+
+
+
+

@@ -17,7 +17,6 @@ from components.disclaimer import disclaimer
 
 # Set OpenAI and Zapier API key from Streamlit secrets
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
-os.environ["ZAPIER_NLA_API_KEY"] = st.secrets.ZAPIERKEY
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
 # Can't persist for now as Streamlit does not support the sqlite database
 PERSIST = True
