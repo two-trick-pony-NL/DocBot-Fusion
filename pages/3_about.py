@@ -5,8 +5,8 @@ from utilities.metrics import *
 add_pageview_row(1)
 
 image = Image.open('images/logo.png')
-example = Image.open('images/example.png')
 
+st.sidebar.image(image)
 
 
 st.write("# About DocBotGPT 👋")
@@ -19,7 +19,6 @@ st.markdown(
     """
 )
 
-st.image(example)
 
 
 
@@ -57,8 +56,7 @@ st.write("---")
 st.write("*Note: This tool heavily uses a Large Language Model, and while impressive: might not always produce accurate answers. See full disclaimer.*")
 
 # Load the app logo
-image = Image.open('images/logo.png')
-st.image(image)
+
 
 st.title("Analytics 📈")
 st.write("Some simple metrics on a dashboard to see how many people use the bot")
@@ -83,15 +81,17 @@ last_pageview_timestamp = pageviews_df['timestamp'].max()
 col3.metric("Total Page Views", f"{total_pageviews}", f"Last Page View: {last_pageview_timestamp}")
 
 # Create bar charts showing usage over time for questions, files, and page views
-st.subheader("Usage Over Time")
+st.subheader("Questions Over Time")
 
 # Questions Over Time
 st.bar_chart(read_csv_to_df('questions.csv').set_index('timestamp'))
 
 # Files Over Time
+st.subheader("File uploads Over Time")
 st.bar_chart(files_df.set_index('timestamp'))
 
 # Page Views Over Time
+st.subheader("Page Views Over Time")
 st.bar_chart(pageviews_df.set_index('timestamp'))
 
 
