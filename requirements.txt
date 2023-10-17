@@ -10,3 +10,4 @@ pysqlite3-binary
 streamlit-card
 streamlit-extras
 st-annotated-text
+pandas

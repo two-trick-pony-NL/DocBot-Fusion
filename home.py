@@ -1,5 +1,7 @@
 import streamlit as st
 import os
+from utilities.metrics import *
+add_pageview_row(1)
 
 
 from components.sidebar import sidebar_component

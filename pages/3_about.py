@@ -1,6 +1,8 @@
 import streamlit as st
 from components.disclaimer import disclaimer
 from PIL import Image
+from utilities.metrics import *
+add_pageview_row(1)
 
 image = Image.open('images/logo.png')
 example = Image.open('images/example.png')

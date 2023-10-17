@@ -6,6 +6,8 @@ from utilities.restore import demo_data
 from utilities.delete import delete_data_folder, delete_persistence
 from utilities.file_upload import save_uploaded_file
 from components.disclaimer import disclaimer
+from utilities.metrics import *
+add_pageview_row(1)
 
 
 image = Image.open('images/logo.png')

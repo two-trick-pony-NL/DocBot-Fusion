@@ -14,6 +14,8 @@ import json
 from utilities.find_common_words import find_common_words
 from utilities.file_upload import save_uploaded_file
 from components.disclaimer import disclaimer
+from utilities.metrics import *
+add_pageview_row(1)
 
 # Set OpenAI and Zapier API key from Streamlit secrets
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
@@ -98,6 +100,7 @@ if not query:
 # Chat with the assistant based on user input
 if query:
     chat_history = st.session_state.chat_history
+    add_question_row(1)
     with st.spinner("Hang on..."):
         with st.chat_message("user"):
             st.markdown(query)
@@ -142,8 +145,6 @@ if query:
             try:
                 with st.expander("ℹ️ Source"):
                         document = result["source_documents"][0]
-                        print("##### DOCUMETN ####")
-                        print(document)
                         # Extracting page content and metadata
                         page_content = str(document.page_content)
                         metadata = str(document.metadata)
