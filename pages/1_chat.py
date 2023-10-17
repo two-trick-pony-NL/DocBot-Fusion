@@ -106,7 +106,6 @@ if query:
 
         
 
-
         # Initialize the ConversationalRetrievalChain
         if PERSIST and os.path.exists("persist"):
             print("Reusing index...\n")
