@@ -7,7 +7,7 @@ example = Image.open('images/example.png')
 
 
 
-st.write("# About DocBot Fusion 👋")
+st.write("# About DocBotGPT 👋")
 st.write("Experience the future of document interaction with our cutting-edge AI. Unleash the power of intelligent document analysis as our AI effortlessly sifts through your files, understanding their content. Engage in seamless conversations and unlock insights with a chat interface that allows you to ask questions and receive instant, accurate responses about your documents.")
 
 st.markdown(

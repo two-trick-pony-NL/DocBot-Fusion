@@ -5,7 +5,7 @@
 
 
 # If ChatGPT could read your documents, what would it say? 😏
-Well you're about to find out. With Docbot Fusion you fuse ChatGPT with **your** files so that it knows what's going on in your life. 
+Well you're about to find out. With DocbotGPT you fuse ChatGPT with **your** files so that it knows what's going on in your life. 
 
 ## How does that work? Simple:
 - 📤 just upload some files like your calendar 📆 and preferences of your family 👨‍👩‍👧
