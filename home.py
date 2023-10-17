@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 
+
 #from components.logo import logo_component
 from components.sidebar import sidebar_component
 st.set_page_config(
@@ -16,6 +17,7 @@ st.set_page_config(
 
 
 sidebar_component()
+st.balloons()
 
 
 

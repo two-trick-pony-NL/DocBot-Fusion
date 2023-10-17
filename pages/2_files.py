@@ -116,7 +116,7 @@ def is_data_folder_empty():
 
 # Restore button
 
-if st.button("Restore Demo Files", key='restore'):
+if st.button("Use Demo Files", key='restore'):
     print('restore function')
     backup_path = os.path.join(os.path.dirname(__file__), '..', 'backup')
     data_path = os.path.join(os.path.dirname(__file__), '..', 'data')
