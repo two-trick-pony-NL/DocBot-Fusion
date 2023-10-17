@@ -94,7 +94,7 @@ if selected_file:
         df = pd.read_csv(file_path)
         st.write("### Preview of Selected CSV File")
         st.write(df)
-    elif file_extension.lower() == 'txt':
+    elif file_extension.lower() == 'txt' or file_extension.lower() == 'py':
         with open(file_path, 'r') as file:
             text_content = file.read()
             st.write("### Preview of Selected Text File")
