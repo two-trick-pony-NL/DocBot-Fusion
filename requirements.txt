@@ -11,5 +11,5 @@ streamlit-card
 streamlit-extras
 st-annotated-text
 pandas
-opencv-python
+opencv-python-headless
 pillow
