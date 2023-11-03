@@ -21,7 +21,7 @@ add_pageview_row(1)
 os.environ["OPENAI_API_KEY"] = st.secrets.APIKEY
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
 # Can't persist for now as Streamlit does not support the sqlite database
-PERSIST = False
+PERSIST = True
 
 # Create an instance of InMemoryCache
 llm_cache = InMemoryCache()
