@@ -12,3 +12,4 @@ streamlit-extras
 st-annotated-text
 pandas
 opencv-python
+pillow
